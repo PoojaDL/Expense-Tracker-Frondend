@@ -1,0 +1,43 @@
+.items {
+  width: 80%;
+  height: min-content;
+}
+
+.items:hover {
+  transform: scale(1.03);
+  -webkit-box-shadow: 0px 5px 15px 8px #e4e7fb;
+  box-shadow: 0px 5px 10px 8px #e4e7fb;
+}
+
+@media (min-width: 900px) {
+  .items {
+    width: 60%;
+  }
+}
+
+@media (max-width: 550px) {
+  .items {
+    width: 94%;
+  }
+
+  .form-card {
+    width: 94%;
+  }
+}
+
+@media (min-width: 550px) {
+  .form-card {
+    width: 60%;
+  }
+}
+
+.description {
+  /* font-size: large; */
+  font-weight: bold;
+  padding: 0%;
+  margin: 0;
+}
+
+/* .price {
+  font-weight: bold;
+} */

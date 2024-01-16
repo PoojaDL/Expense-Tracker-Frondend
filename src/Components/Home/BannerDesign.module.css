@@ -1,0 +1,21 @@
+.progress-bar {
+  margin: 10px 0px;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+/* .progress-bar::before {
+  content: "75%";
+} */
+
+@media (max-width: 600px) {
+  .progress-bar {
+    width: 100px;
+    height: 100px;
+  }
+}

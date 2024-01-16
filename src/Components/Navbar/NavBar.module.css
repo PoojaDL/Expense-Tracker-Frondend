@@ -1,0 +1,20 @@
+.navLink {
+  font-size: large;
+  padding: 1%;
+  text-decoration: none;
+  color: gray;
+  margin: 0% 10px;
+}
+
+.navLink:hover,
+a.active {
+  color: grey;
+  padding-bottom: 0.25rem;
+  width: fit-content;
+  border-bottom: 2px solid #eeeedd;
+}
+
+.cartBtn {
+  position: absolute;
+  right: 1rem;
+}
