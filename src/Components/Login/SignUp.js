@@ -61,7 +61,7 @@ const SignUp = (props) => {
             props.setToken();
             history.replace("./");
           })
-          .catch((err) => console.log(err));
+          .catch((err) => alert(err.response.data.message));
       }
 
       setLoad(false);
