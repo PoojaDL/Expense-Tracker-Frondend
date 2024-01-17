@@ -3,6 +3,8 @@ import { Fragment, useRef, useState } from "react";
 import axios from "axios";
 import Styles from "./ExpenseItem.module.css";
 
+const path = process.env.REACT_APP_PATH;
+
 const NewExpenseForm = (props) => {
   const [isNewAdded, setNewItem] = useState("");
   const [showExpense, setShowExpense] = useState(false);
@@ -28,7 +30,7 @@ const NewExpenseForm = (props) => {
 
     if (amountInput.current.value && descInput.current.value) {
       axios
-        .post("http://localhost:3030/home", dataEntered, {
+        .post(path + "home", dataEntered, {
           headers: { Authorization: token },
         })
         .then((res) => {

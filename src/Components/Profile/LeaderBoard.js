@@ -3,13 +3,15 @@ import { Fragment, useState } from "react";
 import { Button } from "react-bootstrap";
 import LeaderBoardItem from "./LeaderBoardItem";
 
+const path = process.env.REACT_APP_PATH;
+
 const LeaderBoard = () => {
   const [showLeaderBoard, setShow] = useState(false);
   const [leaderBoard, setLeaderBoard] = useState([]);
   const token = localStorage.getItem("expenseUser");
   const leaderBoardHandler = () => {
     axios
-      .get("http://localhost:3030/premium/leaderBoard", {
+      .get(path + "premium/leaderBoard", {
         headers: { Authorization: token },
       })
       .then((result) => {

@@ -5,6 +5,8 @@ import axios from "axios";
 import classes from "./SignUp.module.css";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
+const path = process.env.REACT_APP_PATH;
+
 const SignUp = (props) => {
   const [isLogin, setIsLogin] = useState(true);
   const [load, setLoad] = useState(false);
@@ -36,7 +38,7 @@ const SignUp = (props) => {
 
       if (isLogin) {
         axios
-          .post("http://localhost:3030/auth", data)
+          .post(path + "auth", data)
           .then((res) => {
             if (res.status === 200) {
               localStorage.setItem("expenseUser", res.data.token);
@@ -53,13 +55,13 @@ const SignUp = (props) => {
         confPassword = confPassInput.current.value;
         data = { ...data, confPassword: confPassword };
         axios
-          .post("http://localhost:3030/auth/signUp", data)
+          .post(path + "auth/signUp", data)
           .then((res) => {
             // console.log(res);
             props.setToken();
             history.replace("./");
           })
-          .catch((err) => alert(err.response.data.message));
+          .catch((err) => console.log(err));
       }
 
       setLoad(false);
@@ -116,9 +118,11 @@ const SignUp = (props) => {
                 <Form.Control ref={confPassInput} type="password" />
               </Form.Group>
             )}
-            <Link to="/forgotpassword" style={{ color: "red" }}>
-              forgot password?
-            </Link>
+            {isLogin && (
+              <Link to="/forgotpassword" style={{ color: "red" }}>
+                forgot password?
+              </Link>
+            )}
             <div className={classes.actions}>
               {load ? (
                 <p style={{ color: "black" }}>Sending request...</p>

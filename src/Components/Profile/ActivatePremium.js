@@ -2,6 +2,8 @@ import { Button } from "react-bootstrap";
 import axios from "axios";
 import { Fragment } from "react";
 
+const path = process.env.REACT_APP_PATH;
+
 const ActivatePremium = (props) => {
   function loadScript(src) {
     return new Promise((resolve) => {
@@ -24,10 +26,9 @@ const ActivatePremium = (props) => {
 
     const token = localStorage.getItem("expenseUser");
     if (result) {
-      const response = await axios.get(
-        "http://localhost:3030/purchase/premiumMembership",
-        { headers: { Authorization: token } }
-      );
+      const response = await axios.get(path + "purchase/premiumMembership", {
+        headers: { Authorization: token },
+      });
       // console.log(response);
       var options = {
         key: response.data.key_id,
@@ -42,7 +43,7 @@ const ActivatePremium = (props) => {
           };
 
           const result = await axios.post(
-            "http://localhost:3030/purchase/updateTransaction",
+            path + "purchase/updateTransaction",
             data,
             { headers: { Authorization: token } }
           );

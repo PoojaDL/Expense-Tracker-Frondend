@@ -3,6 +3,9 @@ import { Form } from "react-bootstrap";
 import axios from "axios";
 
 import classes from "./SignUp.module.css";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+
+const path = process.env.REACT_APP_PATH;
 
 const ForgotPassword = () => {
   const emailInput = useRef();
@@ -13,11 +16,14 @@ const ForgotPassword = () => {
     const email = emailInput.current.value;
 
     axios
-      .post("http://localhost:3030/auth/forgotpassword", { email: email })
+      .post(path + "auth/forgotpassword", { email: email })
       .then((res) => {
         console.log(res);
+        alert("Check your email and reset");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
   };
 
   return (
@@ -39,6 +45,9 @@ const ForgotPassword = () => {
                 placeholder="name@example.com"
               />
             </Form.Group>
+            <Link to="/login" style={{ color: "white" }}>
+              Go back to login
+            </Link>
             <div className={classes.actions}>
               <button type="submit">Submit</button>
             </div>

@@ -4,28 +4,15 @@ import { Fragment } from "react";
 import classes from "./ExpenseItem.module.css";
 import axios from "axios";
 
+const path = process.env.REACT_APP_PATH;
+
 const ExpenseItem = (props) => {
-  // const [item, setItem] = useState(null);
-  // const [isOpen, setUpdateForm] = useState(false);
-  // const emailOfUser = props.email;
-
-  // const updateItem = () => {
-  //   setUpdateForm(true);
-  //   const data = {
-  //     id: props.id,
-  //     expense: props.expense,
-  //     description: props.description,
-  //     category: props.category,
-  //   };
-  //   setItem(data);
-  // };
-
   const token = localStorage.getItem("expenseUser");
   // console.log(props);
 
   const removeItem = () => {
     axios
-      .delete(`http://localhost:3030/home/${props.id}`, {
+      .delete(path + `home/${props.id}`, {
         data: { amount: props.amount, category: props.category },
         headers: { Authorization: token },
       })

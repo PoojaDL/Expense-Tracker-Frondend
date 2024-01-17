@@ -7,13 +7,15 @@ import CategoryDesign from "./CategoryDesign";
 import BannerDesign from "./BannerDesign";
 import Footer from "../FooterPage/Footer";
 
+const path = process.env.REACT_APP_PATH;
+
 const Home = (props) => {
   const [expense, setExpense] = useState([]);
 
   const fetchAllExpenses = () => {
     const token = localStorage.getItem("expenseUser");
     axios
-      .get("http://localhost:3030/home", { headers: { Authorization: token } })
+      .get(path + "home", { headers: { Authorization: token } })
       .then((res) => {
         // console.log(res.data.data);
         setExpense(res.data.data);

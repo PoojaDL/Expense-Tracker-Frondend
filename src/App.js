@@ -1,4 +1,8 @@
-import { Redirect, Route } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  Redirect,
+  Route,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
 import "./App.css";
 import Home from "./Components/Home/Home";
 import SignUp from "./Components/Login/SignUp";
@@ -11,15 +15,18 @@ import axios from "axios";
 import Statitics from "./Components/Statistics/Statitics";
 
 function App() {
+  const param = useParams();
   const [token, changedToken] = useState(false);
   const user = localStorage.getItem("expenseUser");
   const [User, setUser] = useState([]);
   const [Expenses, setExpenses] = useState([]);
 
+  const path = process.env.REACT_APP_PATH;
+
   const fetchUser = () => {
     if (user) {
       axios
-        .get("http://localhost:3030/home/user", {
+        .get(path + "home/user", {
           headers: { Authorization: user },
         })
         .then((res) => {
@@ -47,10 +54,10 @@ function App() {
 
   return (
     <div>
-      <Route path="/forgotpassword" exact>
+      <Route path="/forgotpassword">
         <ForgotPassword />
       </Route>
-      <Route path="/resetpassword/:id/:token" exact>
+      <Route path="/resetpassword/:id/:token">
         <ResetPassword />
       </Route>
       {user !== null && (
@@ -90,10 +97,10 @@ function App() {
         {user === null ? <Redirect to="/login" /> : <Redirect to="/home" />}
       </Route>
 
-      {/* <Route path="*">
-        {user === null && <Redirect to="/login" />}
+      <Route path="*">
+        {/* {user === null && <Redirect to="/" />} */}
         {user !== null && <Redirect to="/home" />}
-      </Route> */}
+      </Route>
     </div>
   );
 }

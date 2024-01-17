@@ -7,6 +7,8 @@ import ExpenseItem from "../Home/ExpenseItem";
 import Paginations from "./Paginations";
 import { Button, Form } from "react-bootstrap";
 
+const path = process.env.REACT_APP_PATH;
+
 const Transactions = () => {
   const params = useParams();
   const [expense, setExpense] = useState([]);
@@ -22,12 +24,9 @@ const Transactions = () => {
     }
     if (params.id === "all" && pageNo) {
       axios
-        .get(
-          `http://localhost:3030/home/${params.id}?page=${pageNo}&items=${noOfItems}`,
-          {
-            headers: { Authorization: token },
-          }
-        )
+        .get(path + `home/${params.id}?page=${pageNo}&items=${noOfItems}`, {
+          headers: { Authorization: token },
+        })
         .then((res) => {
           setNo(res.data.data.lastPage);
           setExpense(res.data.data.products);
@@ -35,7 +34,7 @@ const Transactions = () => {
         .catch((err) => console.log(err));
     } else {
       axios
-        .get(`http://localhost:3030/home/${params.id}`, {
+        .get(path + `home/${params.id}`, {
           headers: { Authorization: token },
         })
         .then((res) => {

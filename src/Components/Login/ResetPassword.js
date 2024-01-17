@@ -5,6 +5,8 @@ import axios from "axios";
 import classes from "./SignUp.module.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
+const path = process.env.REACT_APP_PATH;
+
 const ResetPassword = () => {
   const passwordInput = useRef();
   const { id, token } = useParams();
@@ -15,7 +17,7 @@ const ResetPassword = () => {
     const password = passwordInput.current.value;
 
     axios
-      .post(`http://localhost:3030/auth/resetpassword/${id}/${token}`, {
+      .post(path + `auth/resetpassword/${id}/${token}`, {
         password: password,
       })
       .then((res) => {
@@ -43,7 +45,7 @@ const ResetPassword = () => {
               <Form.Control
                 ref={passwordInput}
                 type="password"
-                placeholder="name@example"
+                placeholder="password"
               />
             </Form.Group>
             <div className={classes.actions}>

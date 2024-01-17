@@ -2,13 +2,15 @@ import axios from "axios";
 import { Fragment, useState } from "react";
 import { Button } from "react-bootstrap";
 
+const path = process.env.REACT_APP_PATH;
+
 const DownloadTransaction = () => {
   const [link, setLink] = useState("");
   const token = localStorage.getItem("expenseUser");
   const downloadTransactionHandler = () => {
     console.log("Dowloading....");
     axios
-      .get("http://localhost:3030/home/download-expense", {
+      .get(path + "home/download-expense", {
         headers: { Authorization: token },
       })
       .then((res) => {
